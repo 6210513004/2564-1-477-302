@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: 'Chakra Petch', cursive; font-size: 1em;
+}
+
+div[class="index"]{
+        background-color: rgb(147, 192, 190) ;
+        width: 650px;
+        padding: 40px;
+        border: 5px solid rgb(0, 0, 0);
+        margin: auto ;
+        border-radius: 30px;
+        bottom: 0;
+        box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 36px; margin: 0px; 
+    font-style: normal;
+}
+
+header h2 {
+    font-size: 18px; margin: 0px; color: rgb(184, 41, 41);
+    font-style: normal;
+}
+
+article > header h1 {
+    font-size: 75px; float: none;
+    margin-left: 35%; text-shadow: rgb(221, 99, 28) 1px 0 5px;
+    color: #993333;
+}
+
+article > section header h1 {
+    font-size: 25px;
+}
+
+article > section header h3 {
+    font-size: 25px;
+}
+
+article > section header h4 {
+    font-size: 25px;
+}
+
+article p {
+    clear: both;
+}
+
