@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="POST">
+        <label for="p1">pattren="[A-Za-z]{3}"</label>
+        <input type="text" name="p1" id="p1" pattern="[A-Za-z]{3}" placeholder="Enter not more than 3 characters." required><br>
+        <input type="text" name="p2" id="p2" pattern=".{6,}">
+        <input type="text" name="p3" id="p3" pattern="(?=.*\d)(?=.*[a-z])(?=.*[AZ]).{8,}">
+        <input type="text" name="p4" id="p4" pattern="https?://.+">
+        <input type="text" name="p5" id="p5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[az]{2,3}$">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>

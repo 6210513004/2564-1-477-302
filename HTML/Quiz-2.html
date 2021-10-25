@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz_2</title>
+    <link rel="stylesheet" href="Quiz.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&display=swap" rel="stylesheet">  
+    <style>
+        dialog {
+            background-color:whitesmoke;
+            color: rgb(0, 0, 0);
+            border: 1px solid rgba(0,0,0,0.3) ;
+            border-radius: 30px;
+            bottom: 0;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+
+<body>
+<div class="index">
+    <header>
+        <hgroup>
+            <h1>ยินดีต้อนรับเข้าสู่เว็บไซต์</h1>
+            <h2>เว็ปไซต์นี้เป็นเว็บสำหรับ Quiz รายวิชา 477-302</h2>
+        </hgroup>
+    </header>
+
+    <article>
+        <header>
+            <h1>Quiz-2</h1>
+            <p>Create a simple web application with CSS and HTML5 elements as listed below
+            <br>Dialog
+            <br>Geolocation
+            <br>Local Storage
+            <br>Submit your files on GitHub with sub-directory named "quiz-2".</p>
+        </header>
+
+        <section>
+            <header>
+                <h1>1.Dialog</h1>
+                <p>ส่วนแรกจะเป็นการแสดง Dialog คลิกที่ปุ่มดูสิ</p>
+            </header>
+
+            <form>
+            <div>
+                <dialog id="FirstDialog">
+                    <p><q>กรุณากรอกแบบฟอร์ม</q></p>
+                    <hr>
+                     <!-- ข้อมูลของผู้เข้าใช้งาน  -->
+                     <label class="form-check-label" for="radio_gender_1">ชาย</label>
+                     <input class="form-check-input" type="radio" name="radio_gender" id="radio_gender_2" value="male" required>
+                     <label class="form-check-label" for="radio_gender_2">หญิง</label>
+                     <input class="form-check-input" type="radio"name="radio_gender" id="radio_gender_2" value="female" required>
+
+                    <br>
+                    <label for="text">ชื่อ-นามสกุล</label>
+                    <input type="text" name="ืtext" placeholder="กรุณากรอก ชื่อ-นามสกุล" required>
+                    
+                    <label for="date">วัน/เดือน/ปีเกิด</label>
+                    <input type="date" name="date" required>   
+                    <br>
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="Emailที่ใช้อยู่ในปัจจุบัน" required>
+
+                    <label for="tel">เบอร์โทรศัพท์</label>
+                    <input type="tel" name="tel" placeholder="เบอร์โทรศัพท์ที่ใช้อยู่ในปัจจุบัน" required>
+
+                    <br><br>
+
+                    <button type="submit" id="reveal">Submit</button>
+                    <button type="close" id="hide">Close</button>
+
+                </dialog>
+                <button id="show">คลิก เพื่อกรอกข้อมูล</button>    
+            </div>
+
+            <script>
+                (function () {
+                    var dialog = document.getElementById('FirstDialog');
+                    document.getElementById('show').onclick = function() {
+                        dialog.showModal();
+                    };
+                    document.getElementById('hide').onclick = function() {
+                        dialog.close();
+                    };
+                })();
+            </script>
+
+            </form>
+        </section>
+
+        <br>
+        <hr>
+
+        <section>
+            <header>
+                <h3>2.Geolocation</h3>
+                <p>ส่วนที่สองจะแสดง position ของผู้ที่เข้าใช้งานบนเว็บไซต์เมื่อผู้ใช้งานอนุญาต</p>
+                <p style="color: crimson;">*บางบราวเซอร์อาจจะไม่รองรับ เช่น Microsoft Edge แต่ใน Google Chrome สามารถรองรับได้ </p>
+            </header>
+            <p id="demo">คลิกปุ่มเพื่อแสดงพิกัด</p>
+            <button onclick="getLocation()">คลิก</button>
+            <div id="mapholder"></div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoKoNVKdXRrp8YDgara5W1m2nfTU1dG5g&callback=initMap" type="text/javascript"></script>
+            <script>
+                var x = document.getElementById("demo");
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition, showError);
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
+                function showPosition(position) {
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+                    latlon = new google.maps.LatLng(lat, lon)
+                    mapholder = document.getElementById('mapholder')
+                    mapholder.style.height = '350px';
+                    mapholder.style.width = '500px';
+
+                    var myOptions = {
+                        center: latlon,
+                        zoom:16,
+                        mapTypeId:google.maps.MapTypeId.ROADMAP,
+                        mapTypeControl:false,
+                        navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+                    }
+                    var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+                    var marker = new google.maps.Marker({position:latlon, map:map, title:"You are here!"});
+                }
+
+                function showError(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        x.innerHTML = "User denied the request for Geolocation."
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        x.innerHTML = "Location information is unavailable."
+                        break;
+                    case error.TIMEOUT:
+                        x.innerHTML = "The request to get user location timed out."
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        x.innerHTML = "An unknown error occurred."
+                        break;
+                }
+            }
+            </script>
+        </section>
+
+        <hr>
+
+        <section>
+            <header>
+                <h4>3.Local Storage</h4>
+                <p>ส่วนที่สามจะทำการเก็บบันทึกข้อมูลจำนวนการคลิก โดยจะแสดงผลลัพธ์ว่าคุณคลิกไปกี่ครั้งแล้ว ลองคลิกที่รูปแมวได้เลย!!</p>
+            </header>
+                <script>
+                    function clickCounter() {
+                        if(typeof(Storage) !== "undefined") {
+                            if (localStorage.clickcount) {
+                                localStorage.clickcount = Number(localStorage.clickcount)+1;
+                            } else {
+                                localStorage.clickcount = 0;
+                            }
+                            document.getElementById("result").innerHTML = " คุณกดคลิกรูปแมวไปแล้ว " + localStorage.clickcount + " ครั้ง!! ";
+                        } else {
+                            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                        }
+                    }
+                    function delUsername() {
+                        localStorage.removeItem("clickcount");
+                        clickCounter();
+                    }
+                </script>
+                    <center>
+                        <p><img src="popcat1.png" onclick="clickCounter()" type="image"><br>Click me!</img></p>
+                        <button onclick="delUsername()" type="button">ปุ่ม Reset</button></p>
+                        <div id="result" ></div>
+                    </center>
+
+        </section>
+    </article>
+</body>
+</html>

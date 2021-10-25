@@ -1,0 +1,16 @@
+
+CSS Compo
+1.selector>element,id,class name
+declaration
+2.1 property>color, text-style,border,text-size,...
+2.2value> red,#ffaabb,bold,italic,2px,2em,24px
+
+1 selector > 1 declaration
+
+syntax
+div{ color:red; border:2px; text-style:bold; }
+
+unit
+em, px, pt ,in ,cm ,mm , xx%
+1em = 16px
+2em = 32px

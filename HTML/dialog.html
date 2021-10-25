@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        dialog {
+            background-color: transparent;
+            color: rgb(0, 0, 0);
+            border: 1px solid rgba(0,0,0,0.3) ;
+            border-radius: 30px;
+            bottom: 0;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <dialog id="myFirstDialog">
+            <p><q>กรุณากรอกแบบสอบถาม</q></p>
+            <!-- <cite>Bertrand Russell</cite> -->
+            <!-- ข้อมูลของผู้เข้าใช้งาน -->
+            <input type="text" name="ืname" placeholder="กรุณากรอก ชื่อ-นามสกุล">
+            <input type="date" name="date">
+            <br>
+            <input type="email" name="email" placeholder="example@mail.com">
+            <input type="tel" name="tel" placeholder="089xxxxxxx">
+            <br><br>
+            <button id="reveal">Submit</button>
+            <button id="hide">Close</button>
+            
+        </dialog>
+
+        <button id="show">คลิก เพื่อกรอกข้อมูล</button>        
+    </div>
+    
+    <script>
+        (function() {
+            var dialog = document.getElementById('myFirstDialog');
+            document.getElementById('show').onclick = function() {
+                dialog.showModal();
+            };
+            document.getElementById('hide').onclick = function() {
+                dialog.close();
+            };
+            document.getElementById('reveal').onclick = function() {
+                dialog.close();
+            };
+        })();   
+    </script>
+</body>
+</html>
